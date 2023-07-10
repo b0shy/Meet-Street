@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs')%>
+    <div class="content">
+        <main>
+            <div class="welcome-message">
+                <h2><%=user.firstName%>'s Events
+                </h2>
+            </div>
+            <%console.log(typeof events)%>
+                <%if(events.length){%>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% events.forEach(event=> { %>
+                                    <tr>
+                                        <td><a href="/events/<%= event.id%>">
+                                                <%= event.title%>
+                                            </a></td>
+                                        <td class="actions">
+                                            <a href="/events/<%= event.id%>/edit" title="Edit"><img
+                                                    src="/images/edit-button.png" alt="Edit" class="button"></a>
+                                            <a href="/events/<%= event.id%>?_method=DELETE" title="Delete"><img
+                                                    src="/images/delete-button.png" alt="Delete" class="button"></a>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <%} else {%>
+                        <p>You have not created any events</p>
+                        <%}%>
+        </main>
+    </div>
+    <%- include('../partials/footer.ejs')%>

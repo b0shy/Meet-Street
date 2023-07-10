@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs')%>
+
+<div class="content">
+    <main>
+        <% let categories = {}; %>
+        <% events.forEach(event => {
+            if(!categories[event.category]){
+                categories[event.category] = [];
+            }
+            categories[event.category].push(event);
+        }); %>
+        <% if(Object.keys(categories).length) {
+            for(let category in categories){
+                %>
+                <h1><%= category %></h1>
+                <% categories[category].forEach(event => { %>
+                    <p>
+                        <a href="/events/<%= event.id%>"><%= event.title%></a>
+                    </p>
+                </a>
+                <% }); 
+            }
+        } else { %>
+            <p>There are no events to display</p>
+        <% } %>
+    </main>
+</div>
+<%- include('../partials/footer.ejs')%>

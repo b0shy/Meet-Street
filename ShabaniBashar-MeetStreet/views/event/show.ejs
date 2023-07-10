@@ -1,0 +1,29 @@
+<%- include('../partials/header.ejs')%>
+    <div class="content">
+        <main>
+            <h2>
+                <%= event.title%>
+                    <%if(user == event.host._id){%>
+                        <form>
+                            <div id="alterButtons">
+                                <button type="submit" formmethod="GET" formaction="/events/<%= event.id%>/edit"><img
+                                        src="/images/edit-button.png" alt="Edit" class="button"></button>
+                                <button type="submit" formmethod="POST"
+                                    formaction="/events/<%= event.id%>/?_method=DELETE"><img
+                                        src="/images/delete-button.png" alt="Delete" class="button"></button>
+                            </div>
+                        </form>
+                    <%}%>
+            </h2>
+            <small>Posted <%= event.createdAt%> by <%= event.host.firstName + ' ' + event.host.lastName%></small>
+            <div id="event">
+                <img src="/images/<%= event.image %>" alt="<%= event.title %>" class="event_image"><br>
+                Host: <%= event.host.firstName + ' ' + event.host.lastName%><br>
+                    Location: <%= event.location%><br>
+                        Start time: <%= event.start%><br>
+                            End time: <%= event.end%><br>
+                                Details: <%= event.content%><br>
+            </div>
+        </main>
+    </div>
+    <%- include('../partials/footer.ejs')%>
